@@ -1,0 +1,28 @@
+# 依赖与构建产物
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# 本地缓存
+.npm-cache/
+.vercel/
+.DS_Store
+Thumbs.db
+
+# 打包与编辑台中间产物
+gongtiao-site.zip
+.static-export-stash/
+.tmp/
+.history/
+
+# 环境变量（千万不要提交）
+.env
+.env.local
+.env*.local
+
+# 编辑器
+.vscode/
+.idea/

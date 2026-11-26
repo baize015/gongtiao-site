@@ -1,0 +1,25 @@
+{
+  "friends": [
+    {
+      "name": "示例友链一",
+      "desc": "把这个换成朋友的站，地址写完整 https:// 开头。",
+      "url": "https://example.com",
+      "avatar": "/images/friends/f1.svg",
+      "color": "#7c9cbf"
+    },
+    {
+      "name": "示例友链二",
+      "desc": "头像可以上传，也可以填一个外链。",
+      "url": "https://example.com",
+      "avatar": "/images/friends/f2.svg",
+      "color": "#e6d3b3"
+    },
+    {
+      "name": "示例友链三",
+      "desc": "不需要的条目在面板里删掉就行。",
+      "url": "https://example.com",
+      "avatar": "/images/friends/f3.svg",
+      "color": "#a9c6e0"
+    }
+  ]
+}

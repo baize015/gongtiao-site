@@ -1,0 +1,670 @@
+@import "tailwindcss";
+
+/* 从原模板移植的组件用的是 `dark:` 变体，这里把它绑到 .dark 类上。
+   站点的主题脚本会同时给 <html> 设置 data-theme 和 dark 类。 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   配色桥接：原模板组件写的是 slate / indigo / purple 色阶，
+   这里把这三条色阶整体映射到「雾蓝 + 暖白」，
+   这样移植过来的部件不用逐个改 class 就会跟本站同色。
+   ============================================================ */
+@theme {
+  --color-slate-50: #f6f9fc;
+  --color-slate-100: #eaf1f7;
+  --color-slate-200: #dbe6f0;
+  --color-slate-300: #c3d4e3;
+  --color-slate-400: #9db2c6;
+  --color-slate-500: #7d93a8;
+  --color-slate-600: #647a8f;
+  --color-slate-700: #4e6070;
+  --color-slate-800: #3a4854;
+  --color-slate-900: #26333f;
+  --color-slate-950: #16212b;
+
+  --color-indigo-50: #eef4fa;
+  --color-indigo-100: #dce9f4;
+  --color-indigo-200: #bcd3e9;
+  --color-indigo-300: #9bbcd9;
+  --color-indigo-400: #7c9cbf;
+  --color-indigo-500: #6489b0;
+  --color-indigo-600: #5b80a8;
+  --color-indigo-700: #4d6e91;
+  --color-indigo-800: #3f5a76;
+  --color-indigo-900: #33475c;
+  --color-indigo-950: #1f2c38;
+
+  --color-purple-50: #faf6ee;
+  --color-purple-100: #f4ecdc;
+  --color-purple-200: #ead9ba;
+  --color-purple-300: #e6d3b3;
+  --color-purple-400: #d8bd92;
+  --color-purple-500: #c4a374;
+  --color-purple-600: #a98a5e;
+  --color-purple-700: #8a6f4c;
+  --color-purple-800: #6a563c;
+  --color-purple-900: #4d3f2d;
+  --color-purple-950: #2e2620;
+}
+
+/* ============================================================
+   宫迢 · 远山与长路  ——  设计令牌
+   雾蓝 + 暖白。想换配色，只改这堆变量即可。
+   ============================================================ */
+
+@theme {
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", ui-serif, Georgia,
+    serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, "Courier New", monospace;
+}
+
+:root {
+  --bg-base: #e8eef5;
+  --bg-deep: #d3e0ec;
+  --bg-tint: #f4f7fb;
+
+  --ink: #22303c;
+  --ink-soft: #4e6070;
+  --ink-faint: #8496a6;
+
+  --accent: #7c9cbf;
+  --accent-strong: #5b80a8;
+  --warm: #e6d3b3;
+  --warm-soft: #f3e8d5;
+
+  --glass: rgba(255, 255, 255, 0.58);
+  --glass-strong: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.72);
+  --glass-hover: rgba(255, 255, 255, 0.72);
+
+  --line: rgba(124, 156, 191, 0.26);
+  --shadow: 0 10px 34px rgba(72, 104, 136, 0.13);
+  --shadow-lg: 0 20px 60px rgba(72, 104, 136, 0.18);
+
+  --code-bg: #22303c;
+  --code-ink: #dbe6f0;
+
+  --fog-1: rgba(160, 190, 220, 0.55);
+  --fog-2: rgba(214, 226, 238, 0.7);
+  --fog-3: rgba(230, 211, 179, 0.4);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg-base: #101820;
+  --bg-deep: #1b2733;
+  --bg-tint: #16202a;
+
+  --ink: #e6edf3;
+  --ink-soft: #a9bac8;
+  --ink-faint: #7a8b99;
+
+  --accent: #8fb0d0;
+  --accent-strong: #a9c6e0;
+  --warm: #d9c3a0;
+  --warm-soft: #2a2620;
+
+  --glass: rgba(27, 39, 51, 0.55);
+  --glass-strong: rgba(22, 32, 42, 0.82);
+  --glass-border: rgba(160, 190, 220, 0.16);
+  --glass-hover: rgba(35, 49, 62, 0.72);
+
+  --line: rgba(143, 176, 208, 0.22);
+  --shadow: 0 10px 34px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+  --code-bg: #0c141c;
+  --code-ink: #cddae6;
+
+  --fog-1: rgba(58, 86, 116, 0.45);
+  --fog-2: rgba(38, 60, 84, 0.55);
+  --fog-3: rgba(120, 100, 72, 0.25);
+
+  color-scheme: dark;
+}
+
+/* ============================================================
+   基础
+   ============================================================ */
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--bg-base);
+  line-height: 1.75;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--accent) 40%, transparent);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--accent) 60%, transparent);
+  background-clip: content-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  transition: color 0.18s ease, opacity 0.18s ease;
+}
+
+/* ---- 交互反馈层 ---- */
+/* 移动端点按不要冒蓝块 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 所有可点元素：按下去要立刻有回应，不然像卡住 */
+button,
+a,
+summary,
+[role="button"],
+label[for] {
+  transition-property: transform, color, background-color, border-color, box-shadow, opacity;
+  transition-duration: 0.16s;
+  transition-timing-function: ease;
+}
+
+button:active:not(:disabled),
+[role="button"]:active,
+summary:active,
+.press:active {
+  transform: scale(0.965);
+  transition-duration: 0.05s;
+}
+
+/* 键盘可达性：焦点圈只在键盘操作时出现 */
+:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 70%, transparent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   组件层
+   ============================================================ */
+
+@layer components {
+  .page-shell {
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .glass {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: var(--shadow);
+  }
+
+  .glass-hover {
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease,
+      background-color 0.22s ease;
+  }
+  .glass-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    background: var(--glass-hover);
+  }
+  .glass-hover:active {
+    transform: translateY(-1px) scale(0.994);
+    box-shadow: var(--shadow);
+    transition-duration: 0.06s;
+  }
+
+  .kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: var(--font-sans);
+  }
+
+  .divider-warm {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--warm), transparent);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    background: color-mix(in oklab, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in oklab, var(--accent) 22%, transparent);
+    transition: all 0.25s ease;
+  }
+  .chip:hover {
+    color: var(--accent-strong);
+    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    background: color-mix(in oklab, var(--accent) 18%, transparent);
+  }
+  .chip:active {
+    transform: scale(0.96);
+    transition-duration: 0.05s;
+  }
+
+  .link-underline {
+    position: relative;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.35s ease, color 0.25s ease;
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+    color: var(--accent-strong);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    background: var(--glass);
+    transition:
+      color 0.16s ease,
+      border-color 0.16s ease,
+      background-color 0.16s ease,
+      transform 0.1s ease;
+  }
+  .btn-ghost:hover {
+    color: var(--accent-strong);
+    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    transform: translateY(-1px);
+  }
+  .btn-ghost:active {
+    transform: translateY(0.5px) scale(0.965);
+    color: var(--accent-strong);
+    background: color-mix(in oklab, var(--accent) 12%, var(--glass));
+    transition-duration: 0.05s;
+  }
+}
+
+/* ============================================================
+   背景：雾
+   ============================================================ */
+
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(170deg, var(--bg-tint) 0%, var(--bg-base) 35%, var(--bg-deep) 100%);
+  transition: background 0.8s ease;
+}
+
+.fog {
+  position: absolute;
+  border-radius: 50%;
+  /* radial-gradient 代替 blur */
+  will-change: transform;
+  opacity: 0.9;
+}
+
+.fog-a {
+  width: 84vw;
+  height: 64vh;
+  left: -18vw;
+  top: -14vh;
+  background: radial-gradient(closest-side, var(--fog-1) 0%, transparent 74%);
+  animation: drift-a 46s ease-in-out infinite alternate;
+}
+.fog-b {
+  width: 74vw;
+  height: 58vh;
+  right: -18vw;
+  top: 14vh;
+  background: radial-gradient(closest-side, var(--fog-2) 0%, transparent 74%);
+  animation: drift-b 58s ease-in-out infinite alternate;
+}
+.fog-c {
+  width: 68vw;
+  height: 50vh;
+  left: 18vw;
+  bottom: -18vh;
+  background: radial-gradient(closest-side, var(--fog-3) 0%, transparent 74%);
+  animation: drift-c 64s ease-in-out infinite alternate;
+}
+
+.site-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+@keyframes drift-a {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(6vw, 5vh, 0) scale(1.12);
+  }
+}
+@keyframes drift-b {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  to {
+    transform: translate3d(-7vw, 4vh, 0) scale(0.95);
+  }
+}
+@keyframes drift-c {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-5vw, -6vh, 0) scale(1.15);
+  }
+}
+
+/* 入场动画 */
+/* 首页照片墙海报：换图时淡入 */
+@keyframes gt-poster-fade {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.44s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   正文排版（Markdown 渲染结果）
+   ============================================================ */
+
+.prose-gt {
+  color: var(--ink-soft);
+  font-size: 1.0125rem;
+  line-height: 1.95;
+  word-break: break-word;
+}
+
+.prose-gt > * + * {
+  margin-top: 1.15em;
+}
+
+.prose-gt h1,
+.prose-gt h2,
+.prose-gt h3,
+.prose-gt h4 {
+  color: var(--ink);
+  line-height: 1.4;
+  margin-top: 2.1em;
+  margin-bottom: 0.7em;
+  scroll-margin-top: 6rem;
+}
+.prose-gt h1 {
+  font-size: 1.7rem;
+}
+.prose-gt h2 {
+  font-size: 1.42rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--accent);
+}
+.prose-gt h3 {
+  font-size: 1.2rem;
+}
+.prose-gt h4 {
+  font-size: 1.05rem;
+}
+
+.prose-gt a {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+}
+.prose-gt a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.prose-gt strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.prose-gt ul,
+.prose-gt ol {
+  padding-left: 1.4em;
+}
+.prose-gt ul {
+  list-style: disc;
+}
+.prose-gt ol {
+  list-style: decimal;
+}
+.prose-gt li + li {
+  margin-top: 0.35em;
+}
+.prose-gt li::marker {
+  color: var(--accent);
+}
+.prose-gt li > input[type="checkbox"] {
+  margin-right: 0.45em;
+  accent-color: var(--accent);
+}
+
+.prose-gt blockquote {
+  margin-inline: 0;
+  padding: 0.85rem 1.1rem;
+  border-left: 3px solid var(--warm);
+  background: color-mix(in oklab, var(--warm) 14%, transparent);
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: var(--ink-soft);
+}
+.prose-gt blockquote p {
+  margin: 0;
+}
+
+.prose-gt hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+  margin-block: 2.4em;
+}
+
+.prose-gt img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.9rem;
+  box-shadow: var(--shadow);
+  margin-inline: auto;
+}
+
+.prose-gt code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  border-radius: 0.35rem;
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  color: var(--accent-strong);
+}
+
+.prose-gt pre {
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 1.05rem 1.15rem;
+  border-radius: 0.9rem;
+  overflow-x: auto;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  box-shadow: var(--shadow);
+}
+.prose-gt pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  border-radius: 0;
+}
+
+.prose-gt table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  display: block;
+  overflow-x: auto;
+}
+.prose-gt th,
+.prose-gt td {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+.prose-gt th {
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.prose-gt .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.4rem;
+}
+
+.prose-gt .footnotes {
+  font-size: 0.88rem;
+  color: var(--ink-faint);
+}
+
+/* highlight.js —— 雾蓝配色 */
+.prose-gt .hljs-comment,
+.prose-gt .hljs-quote {
+  color: #7f93a8;
+  font-style: italic;
+}
+.prose-gt .hljs-keyword,
+.prose-gt .hljs-selector-tag,
+.prose-gt .hljs-literal,
+.prose-gt .hljs-type {
+  color: #a9c6e0;
+}
+.prose-gt .hljs-string,
+.prose-gt .hljs-attr,
+.prose-gt .hljs-regexp,
+.prose-gt .hljs-addition {
+  color: #d9c3a0;
+}
+.prose-gt .hljs-number,
+.prose-gt .hljs-built_in,
+.prose-gt .hljs-symbol {
+  color: #e0b9a8;
+}
+.prose-gt .hljs-title,
+.prose-gt .hljs-section,
+.prose-gt .hljs-name {
+  color: #b9d3e8;
+}
+.prose-gt .hljs-variable,
+.prose-gt .hljs-template-variable,
+.prose-gt .hljs-params {
+  color: #cddae6;
+}
+.prose-gt .hljs-deletion {
+  color: #e79a9a;
+}
+.prose-gt .hljs-meta {
+  color: #8fa9bf;
+}

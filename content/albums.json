@@ -1,0 +1,27 @@
+{
+  "albums": [
+    {
+      "id": "demo",
+      "name": "示例相册",
+      "cover": "/images/photos/p1.svg",
+      "description": "把这句话换成你想写的说明。照片可以在编辑台的「相册」页上传。",
+      "photos": [
+        {
+          "src": "/images/photos/p1.svg",
+          "title": "第一张",
+          "note": "点开可以看到大图"
+        },
+        {
+          "src": "/images/photos/p2.svg",
+          "title": "第二张",
+          "note": "可以拖动调整顺序"
+        },
+        {
+          "src": "/images/photos/p3.svg",
+          "title": "第三张",
+          "note": "也可以直接删掉"
+        }
+      ]
+    }
+  ]
+}

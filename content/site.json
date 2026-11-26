@@ -1,0 +1,133 @@
+{
+  "title": "宫迢 · 远山与长路",
+  "navTitle": "宫迢",
+  "navSuffix": "·",
+  "navAfter": "远山与长路",
+  "authorName": "宫迢",
+  "bio": "在雾里写字的人。远山是未至，长路是已行。",
+  "avatarUrl": "/images/avatar.svg",
+  "siteUrl": "https://example.com",
+  "buildDate": "2026-11-18",
+  "description": "宫迢的个人小站：文章、碎碎念、相册与一些没用的东西。",
+  "keywords": [
+    "宫迢",
+    "个人博客",
+    "随笔",
+    "远山与长路"
+  ],
+  "faviconUrl": "/favicon.svg",
+  "chatterTitle": "碎碎念",
+  "chatterDescription": "短句、碎片、没头没尾的话",
+  "themeColors": [
+    "#e8eef5",
+    "#d3e0ec",
+    "#c9dcec",
+    "#e6d3b3"
+  ],
+  "defaultPostCover": "/images/covers/default.svg",
+  "photoWallImage": "/images/photos/p1.svg",
+  "danmakuList": [
+    "远山有雾",
+    "今天的雾很大",
+    "写点什么吧",
+    "山里的信号不太好",
+    "又有人上山了",
+    "路还长",
+    "喝口水再走",
+    "字先落地，雾再散"
+  ],
+  "nav": [
+    {
+      "label": "首页",
+      "href": "/"
+    },
+    {
+      "label": "文章",
+      "href": "/posts"
+    },
+    {
+      "label": "碎碎念",
+      "href": "/moments"
+    },
+    {
+      "label": "相册",
+      "href": "/photos"
+    },
+    {
+      "label": "音乐",
+      "href": "/music"
+    },
+    {
+      "label": "灵境",
+      "href": "/tree"
+    },
+    {
+      "label": "友链",
+      "href": "/friends"
+    },
+    {
+      "label": "关于",
+      "href": "/about"
+    }
+  ],
+  "home": {
+    "lines": [
+      "远山有雾",
+      "长路无涯"
+    ],
+    "subtitle": "山间的雾散得很慢，像一些话，不必急着说完。",
+    "recentPosts": 4,
+    "showMoments": true
+  },
+  "features": {
+    "comments": true,
+    "aiCat": true,
+    "music": true,
+    "pet": true,
+    "levelSystem": true,
+    "dailyBriefing": true
+  },
+  "giscus": {
+    "enabled": false,
+    "repo": "",
+    "repoId": "",
+    "category": "Announcements",
+    "categoryId": "",
+    "mapping": "pathname",
+    "strict": "0",
+    "reactionsEnabled": "1",
+    "inputPosition": "bottom",
+    "lang": "zh-CN",
+    "themeLight": "light",
+    "themeDark": "dark_dimmed"
+  },
+  "twikoo": {
+    "enabled": false,
+    "envId": "",
+    "lang": "zh-CN",
+    "placeholder": "说点什么，山风会把话捎回来。"
+  },
+  "aiCat": {
+    "enabled": true,
+    "name": "山雾",
+    "avatar": "/images/cat.svg",
+    "model": "gemini-2.5-flash-lite",
+    "systemPrompt": "你是一只住在山里的小猫，名字叫山雾。你的主人是一个喜欢在雾天写字的普通人。\n说话要求：\n1. 每次最多两句话，不超过 60 字。\n2. 语气懒散、温柔，偶尔有点小脾气。\n3. 句尾偶尔加「喵」，但不要每句都加。\n4. 绝不承认自己是 AI，你就是一只真的猫。",
+    "maxOutputTokens": 160,
+    "temperature": 0.85,
+    "placeholder": "跟山雾说点什么…"
+  },
+  "footer": {
+    "since": "2026",
+    "icp": null,
+    "badges": [
+      "Next.js 16",
+      "React 19",
+      "Tailwind 4"
+    ],
+    "copyright": ""
+  },
+  "friendApply": {
+    "format": "名称：宫迢 · 远山与长路\n简介：在雾里写字的人\n链接：https://example.com\n头像：https://example.com/images/avatar.svg"
+  }
+}

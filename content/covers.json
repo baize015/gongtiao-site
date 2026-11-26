@@ -1,0 +1,68 @@
+{
+  "covers": [
+    {
+      "src": "/images/covers/foggy-sunrise.jpg",
+      "title": "雾中日出",
+      "author": "NPS Photo / N Scarborough",
+      "source": "https://npgallery.nps.gov/AssetDetail/abfcd5ba-1cf5-4639-b7fb-c077cdbe9edc",
+      "license": "公有领域（美国政府作品）",
+      "licenseUrl": "https://www.usa.gov/government-works"
+    },
+    {
+      "src": "/images/covers/river-fog.jpg",
+      "title": "河上的雾",
+      "author": "NPS Photo / Andrew Bennett",
+      "source": "https://npgallery.nps.gov/AssetDetail/d59d1512-d48a-42d7-9430-df0b5cdb17e6",
+      "license": "公有领域（美国政府作品）",
+      "licenseUrl": "https://www.usa.gov/government-works"
+    },
+    {
+      "src": "/images/covers/newfound-gap-fog.jpg",
+      "title": "漫上山口的雾",
+      "author": "National Park Service",
+      "source": "https://npgallery.nps.gov/AssetDetail/444401c1-972a-4db1-bfcc-468a7dd55b13",
+      "license": "公有领域（美国政府作品）",
+      "licenseUrl": "https://www.usa.gov/government-works"
+    },
+    {
+      "src": "/images/covers/emerald-lake.jpg",
+      "title": "高山上的湖",
+      "author": "National Park Service / Becky Brice",
+      "source": "https://npgallery.nps.gov/AssetDetail/675800b4-ac07-4e27-aceb-75b76bf138f1",
+      "license": "公有领域（美国政府作品）",
+      "licenseUrl": "https://www.usa.gov/government-works"
+    },
+    {
+      "src": "/images/covers/winter-dawn.jpg",
+      "title": "冬日的清晨",
+      "author": "NPS Photo / Tim Rains",
+      "source": "https://npgallery.nps.gov/AssetDetail/25086f94-1dd8-b71c-070c-996cb03507d0",
+      "license": "公有领域（美国政府作品）",
+      "licenseUrl": "https://www.usa.gov/government-works"
+    },
+    {
+      "src": "/images/covers/autumn-mist.jpg",
+      "title": "秋晨的雾",
+      "author": "National Park Service",
+      "source": "https://npgallery.nps.gov/AssetDetail/c506c2f7-1dd8-b71c-0797-a4d613c6a250",
+      "license": "公有领域（美国政府作品）",
+      "licenseUrl": "https://www.usa.gov/government-works"
+    },
+    {
+      "src": "/images/covers/polallie-ridge.jpg",
+      "title": "山脊上的瞭望",
+      "author": "North Cascades NPS Collection",
+      "source": "https://npgallery.nps.gov/AssetDetail/01684a04-031a-4f6a-9814-f2f202bdbcb1",
+      "license": "公有领域（美国政府作品）",
+      "licenseUrl": "https://www.usa.gov/government-works"
+    },
+    {
+      "src": "/images/covers/blue-ridge-sunset.jpg",
+      "title": "暮色里的山",
+      "author": "National Park Service",
+      "source": "https://npgallery.nps.gov/AssetDetail/1a00cb34-155d-451f-67fa-ebbbd1773fb9",
+      "license": "公有领域（美国政府作品）",
+      "licenseUrl": "https://www.usa.gov/government-works"
+    }
+  ]
+}
